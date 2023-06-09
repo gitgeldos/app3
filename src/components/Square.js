@@ -1,11 +1,9 @@
-import React, { useContext } from 'react';
-import { MyContext } from '../utils/context';
+import React from 'react';
 
-const Square =()=> {
-    const contextValue=useContext(MyContext)
+function Square (props){  
     return (
-        <button className='border border-slate-500 w-8'>
-            {contextValue}
+        <button className='border border-slate-500 w-8' onClick={props.onClick}>
+            {props.value}
         </button>
     );
 }

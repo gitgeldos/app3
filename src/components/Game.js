@@ -1,11 +1,10 @@
 import React from 'react';
 import Board from './Board';
-import { MyContext } from '../utils/context';
 
-const Game = () => {
+class Game extends React.Component{
+    render(){
     return (
-        <MyContext.Provider>
-            <div className='game'>
+        <div className='game'>
             <div className='game-board'>
                 <Board/>
             </div>      
@@ -17,10 +16,9 @@ const Game = () => {
                 
                 </ol>
             </div>
-            </div>
-        </MyContext.Provider>
-        
+        </div>
     );
+    }
 };
 
 export default Game;
