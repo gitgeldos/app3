@@ -1,49 +1,19 @@
 import React from 'react';
 import Square from './Square';
 
-class Board extends React.Component{
-    constructor(props){
-        super(props)
-        this.state={
-            squares:Array(9).fill(null),
-            xIsNext:true,
-        }
-    }
-
-    handleClick(i) {
-        const squares = this.state.squares.slice();
-        if (calculateWinner(squares) || squares[i]) {
-          return;
-        }
-        squares[i] = this.state.xIsNext ? 'X' : 'O';
-        this.setState({
-          squares: squares,
-          xIsNext: !this.state.xIsNext,
-        });
-    }
-     
+class Board extends React.Component{     
     renderSquare(i){
         return (
         <Square 
-            value={this.state.squares[i]}
-            onClick={()=>this.handleClick(i)}
+            value={this.props.squares[i]}
+            onClick={()=>this.props.onClick(i)}
         />
         )
     }
 
-
     render(){
-        console.log(this.state.squares)
-        const winner = calculateWinner(this.state.squares);
-        let status;
-        if (winner) {
-        status = 'Выиграл ' + winner;
-        } else {
-        status = 'Следующий ход: ' + (this.state.xIsNext ? 'X' : 'O');
-        }
         return (
             <div className='ml-3 mt-3'>
-                <div className='mb-2.5 font-bold text-2xl'>{status}</div>
                 <div className='flex grid-cols-3 text-xl'>
                     <div>
                         <div>{this.renderSquare(0)}</div>
@@ -69,7 +39,7 @@ class Board extends React.Component{
 
 export default Board;
 
-function calculateWinner(squares) {
+export function calculateWinner(squares) {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
